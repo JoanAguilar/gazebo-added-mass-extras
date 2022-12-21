@@ -1,0 +1,176 @@
+\documentclass[onecolumn]{article}
+
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{hyperref}
+
+\title{Added Mass Transformations}
+\author{Joan Aguilar Mayans}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+Given a body with added mass, we compute the kinetic energy as
+\begin{equation}
+    T = \frac{1}{2} \left( \bm{v}_P^T, \bm{\omega}^T \right) \left( \bm{M}_P + \bm{A}_P \right)
+    \left(
+    \begin{array}{c}
+        \bm{v}_P \\
+        \bm{\omega}
+    \end{array}
+    \right),
+\end{equation}
+where $\bm{v}_P$ is the linear velocity at some point $P$, $\bm{\omega}$ is the angular velocity, $\bm{M}_P$ is the spatial inertia matrix at point $P$, and $\bm{A}_P$ is the added mass matrix at point $P$; with all quantities expressed in an inertial frame.
+
+Under the assumption that kinetic energy is invariant to the point chosen to compute it, even in the presence of added mass, we have
+\begin{equation}
+    T = \frac{1}{2} \left( \bm{v}_P^T, \bm{\omega}^T \right) \left( \bm{M}_P + \bm{A}_P \right)
+    \left(
+    \begin{array}{c}
+        \bm{v}_P \\
+        \bm{\omega}
+    \end{array}
+    \right)
+    = \frac{1}{2} \left( \bm{v}_Q^T, \bm{\omega}^T \right) \left( \bm{M}_Q + \bm{A}_Q \right)
+    \left(
+    \begin{array}{c}
+        \bm{v}_Q \\
+        \bm{\omega}
+    \end{array}
+    \right),
+\end{equation}
+where $Q$ is just some other point.
+
+We know that for the case without added mass, kinetic energy is invariant to the chosen point, therefore,
+\begin{equation}
+    \frac{1}{2} \left( \bm{v}_P^T, \bm{\omega}^T \right) \bm{M}_P
+    \left(
+    \begin{array}{c}
+        \bm{v}_P \\
+        \bm{\omega}
+    \end{array}
+    \right)
+    = \frac{1}{2} \left( \bm{v}_Q^T, \bm{\omega}^T \right) \bm{M}_Q
+    \left(
+    \begin{array}{c}
+        \bm{v}_Q \\
+        \bm{\omega}
+    \end{array}
+    \right),
+\end{equation}
+which implies
+\begin{equation}
+    \frac{1}{2} \left( \bm{v}_P^T, \bm{\omega}^T \right) \bm{A}_P
+    \left(
+    \begin{array}{c}
+        \bm{v}_P \\
+        \bm{\omega}
+    \end{array}
+    \right)
+    = \frac{1}{2} \left( \bm{v}_Q^T, \bm{\omega}^T \right) \bm{A}_Q
+    \left(
+    \begin{array}{c}
+        \bm{v}_Q \\
+        \bm{\omega}
+    \end{array}
+    \right).
+    \label{eq:kinetic-added-mass}
+\end{equation}
+
+Using the kinematic properties of the rigid body, the linear velocity of point $Q$, can be expressed as
+\begin{equation}
+    \bm{v}_Q = \bm{v}_P - \hat{\bm{r}} \bm{\omega};
+    \label{eq:pq}
+\end{equation}
+where $\bm{r} = \overline{PQ}$, and the operator $\hat{\,}$ produces the left cross-product matrix for the vector it is applied to.
+
+Replacing \eqref{eq:pq} in \eqref{eq:kinetic-added-mass} we get
+\begin{equation}
+    \frac{1}{2} \left( \bm{v}_P^T, \bm{\omega}^T \right) \bm{A}_P
+    \left(
+    \begin{array}{c}
+        \bm{v}_P \\
+        \bm{\omega}
+    \end{array}
+    \right)
+    = \frac{1}{2} \left( \bm{v}_P^T + \bm{\omega}^T \hat{\bm{r}}, \bm{\omega}^T \right) \bm{A}_Q
+    \left(
+    \begin{array}{c}
+        \bm{v}_P - \hat{\bm{r}} \bm{\omega} \\
+        \bm{\omega}
+    \end{array}
+    \right),
+    \label{eq:kinetic-added-mass-2}
+\end{equation}
+where we have used the fact that $\hat{\bm{r}}^T = -\hat{\bm{r}}$.
+
+We split the added inertia matrices in $3 \times 3$ blocks such that
+\begin{equation}
+    \bm{A}_P =
+    \left[
+    \begin{array}{cc}
+        \bm{A}_{P11} & \bm{A}_{P12} \\
+        \bm{A}_{P21} & \bm{A}_{P22}
+    \end{array}
+    \right]
+\end{equation}
+and
+\begin{equation}
+    \bm{A}_Q =
+    \left[
+    \begin{array}{cc}
+        \bm{A}_{Q11} & \bm{A}_{Q12} \\
+        \bm{A}_{Q21} & \bm{A}_{Q22}
+    \end{array}
+    \right].
+\end{equation}
+Expanding the left and right hand side of \eqref{eq:kinetic-added-mass-2} we get
+\begin{equation}
+   \frac{1}{2} \left( \bm{v}_P^T \bm{A}_{P11} \bm{v}_P + \bm{v}_P^T \bm{A}_{P12} \bm{\omega} + \bm{\omega}^T \bm{A}_{P21} \bm{v}_P + \bm{\omega}^T \bm{A}_{P22} \bm{\omega} \right)
+   \label{eq:left-side}
+\end{equation}
+and
+\begin{multline}
+    \frac{1}{2} \left( \bm{v}_P^T \bm{A}_{Q11} \bm{v}_P + \bm{v}_P^T \left( -\bm{A}_{Q11} \hat{\bm{r}} + \bm{A}_{Q12} \right) \bm{\omega} + \bm{\omega}^T \left( \hat{\bm{r}} \bm{A}_{Q11} + \bm{A}_{Q21} \right) \bm{v}_P + \right. \\
+    \left. + \bm{\omega}^T \left( -\hat{\bm{r}} \bm{A}_{Q11} \hat{\bm{r}} + \hat{\bm{r}} \bm{A}_{Q12} - \bm{A}_{Q21} \hat{\bm{r}} + \bm{A}_{Q22} \right) \bm{\omega} \right),
+   \label{eq:right-side}
+\end{multline}
+respectively.
+
+By matching terms between \eqref{eq:left-side} and \eqref{eq:right-side} we get the equality
+\begin{equation}
+    \bm{A}_P =
+    \left[
+    \begin{array}{cc}
+        \bm{A}_{Q11} & -\bm{A}_{Q11} \hat{\bm{r}} + \bm{A}_{Q12} \\
+        \hat{\bm{r}} \bm{A}_{Q11} + \bm{A}_{Q21} & -\hat{\bm{r}} \bm{A}_{Q11} \hat{\bm{r}} + \hat{\bm{r}} \bm{A}_{Q12} - \bm{A}_{Q21} \hat{\bm{r}} + \bm{A}_{Q22}
+    \end{array}
+    \right],
+    \label{eq:transform1}
+\end{equation}
+or equivalently,
+\begin{equation}
+    \bm{A}_P = \bm{A}_Q +
+    \left[
+    \begin{array}{cc}
+        \bm{0} & -\bm{A}_{Q11} \hat{\bm{r}} \\
+        \hat{\bm{r}} \bm{A}_{Q11} & -\hat{\bm{r}} \bm{A}_{Q11} \hat{\bm{r}} + \hat{\bm{r}} \bm{A}_{Q12} - \bm{A}_{Q21} \hat{\bm{r}}
+    \end{array}
+    \right];
+    \label{eq:transform2}
+\end{equation}
+which can be used to transform an added mass matrix between two arbitrary points.
+Note that \eqref{eq:transform1} and \eqref{eq:transform2} are a generalization of the parameterization of a rigid-body inertia matrix \cite[eq.~(2.91)]{fossen1994}.
+
+
+
+\begin{thebibliography}{9}
+\bibitem{fossen1994}
+    Thor I. Fossen,
+    \textit{Guidance and Control of Ocean Vehicles},
+    John Wiley \& Sons, England,
+    1994.
+\end{thebibliography}
+
+\end{document}
